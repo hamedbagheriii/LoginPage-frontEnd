@@ -5,11 +5,12 @@ export interface SubmitBtnProps {
     title : string;
     control : string;
     className? : string;
+    formik : any;
 }
-const SubmitBtn : FC<SubmitBtnProps> = ({title , className}) => {
+const SubmitBtn : FC<SubmitBtnProps> = ({title , className , formik}) => {
     return (
         <Button type='submit' className={`w-4/12 mx-auto  ${className}`}>
-            {title}
+            {formik.isSubmitting ? <span>sdasasds</span> : title}      
         </Button>
     );
 }

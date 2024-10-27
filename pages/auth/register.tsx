@@ -4,8 +4,12 @@ import { Form, Formik, FormikProps } from 'formik';
 import LinkBtn from '@/components/ui/Link';
 import FormikControl from '@/components/formik/formikControl';
 import { initialValues, onSubmit, validationSchema } from '@/services/cors/register/core';
+import { useRouter } from 'next/router';
+import { Span } from 'next/dist/trace';
 
 const Register = () => {
+  const router = useRouter();
+
   return (
     <div className='w-full min-h-dvh py-4 bg-slate-300 flex items-center justify-center'>
       <div className='w-full flex justify-center items-center'>
@@ -20,33 +24,17 @@ const Register = () => {
             </CardTitle>
           </CardHeader>
           <div className='w-11/12 h-1 bg-slate-400/25 mt-4 mb-7 mx-auto rounded-3xl' />
-          <Formik 
-           initialValues={initialValues} 
-           onSubmit={onSubmit}
-           validationSchema={validationSchema}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={(values , submitProps)=>onSubmit(values , submitProps , router)}
+            validationSchema={validationSchema}
           >
-            {(formik : FormikProps<any>) => {
+            {(formik: FormikProps<any>) => {
               return (
                 <Form className='space-y-4  flex flex-col '>
                   <FormikControl
                     control='input'
-                    name='username'
-                    type='text'
-                    placeholder=' مثال : hamed bagheri'
-                    label='نام کاربری'
-                  />
-
-                  <FormikControl
-                    control='input'
-                    name='email'
-                    type='text'
-                    placeholder='مثال : example@gmail.com'
-                    label='ایمیل'
-                  />
-
-                  <FormikControl
-                    control='input'
-                    name='firstName'
+                    name='fristName'
                     type='text'
                     placeholder='نام خود را وارد کنید . . .'
                     label='نام'
@@ -62,16 +50,25 @@ const Register = () => {
 
                   <FormikControl
                     control='input'
+                    name='email'
+                    type='text'
+                    placeholder='مثال : example@gmail.com'
+                    label='ایمیل'
+                  />
+
+                  <FormikControl
+                    control='input'
                     name='password'
                     type='text'
                     label='رمز عبور'
                     placeholder='رمز عبور خود را وارد کنید . . .'
                   />
 
-                    <div className='pt-3 flex flex-col'>
-                        <FormikControl control='submitBTN' title='ثبت نام' />
-                        <LinkBtn path='/auth/login' label='ورود به حساب کاربری' />
-                    </div>
+                  <div className='pt-3 flex flex-col'>
+                    <FormikControl control='submitBTN' title='ثبت نام' formik={formik} />
+                    <button type='submit'>s</button>
+                    <LinkBtn path='/auth/login' label='ورود به حساب کاربری'/>
+                  </div>
                 </Form>
               );
             }}
