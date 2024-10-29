@@ -1,20 +1,36 @@
-import { getUserDataSerivce } from "@/services/auth/register";
-import { useEffect } from "react";
+import { getUserDataService } from '@/services/auth/auth';
+import { AlertComponent } from '@/utils/Alert';
+import { AxiosResponse } from 'axios';
+import React, { useEffect, useState } from 'react';
 
 export default function Home() {
-
-  const handleUserData = async ()=>{
-    const res = await getUserDataSerivce()
-    console.log(res);
+  interface userDataType {
+    fristName?: string;
+    lastName?: string;
+    email: string;
+    password: null;
+    id: number;
   }
+  const [userData, setUserData] = useState<userDataType | null>(null);
 
+  const handleGetData = async () => {
+    try {
+      const res: AxiosResponse = await getUserDataService();
+      if (res.status == 200 && res.data.success) {
+        setUserData(res.data.data);
+      }
+    } catch (error) {
+      // error handler in
+    }
+  };
 
   useEffect(() => {
-    handleUserData()
+    handleGetData();
   }, []);
+
   return (
     <div className="w-full h-full overflow-x-hidden">
-      s
+      
     </div>
   );
 }

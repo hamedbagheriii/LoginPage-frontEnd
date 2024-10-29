@@ -1,5 +1,6 @@
 import { AlertComponent } from "@/utils/Alert";
 import axios from "axios"
+import Cookies from "universal-cookie";
 
 
 const errorHandler = (err : any)=>{
@@ -8,7 +9,7 @@ const errorHandler = (err : any)=>{
 }
 axios.interceptors.response.use((res)=>{
     if(!res.data.success){
-        console.log(res.data.message);
+        console.log(res);
         errorHandler(res.data.message);
     }
     
@@ -20,8 +21,8 @@ axios.interceptors.response.use((res)=>{
 
 type ServiceType = (method : string , url : string , data ?: any)=>Promise<any>
 export const service : ServiceType = async (method , url , data)=>{
-    const token = localStorage.getItem('token');
-    console.log(token);
+    const cookies = new Cookies();
+    const token = cookies.get('token');
     
 
     return await axios({

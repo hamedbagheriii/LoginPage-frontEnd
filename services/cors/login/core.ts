@@ -1,5 +1,6 @@
-import { loginUserSerivce } from '@/services/auth/register';
+import { loginUserSerivce } from '@/services/auth/auth';
 import { AlertComponent } from '@/utils/Alert';
+import Cookies from 'universal-cookie';
 import * as Yup from 'yup';
 
 
@@ -9,14 +10,15 @@ export const initialValues = {
 }
 
 export const onSubmit  = async (values : any, submitProps : any , router : any)=>{
+    const cookies = new Cookies(null, { path: '/' });
     console.log(values);
 
     try {
         const res = await loginUserSerivce(values);
 
         if(res.status === 200 && res.data.success){
+            cookies.set('token' , res.data.token)
             console.log(res);
-            localStorage.setItem('token' , res.data.token)
 
             setTimeout(() => {
                 AlertComponent('عملیات با موفقیت انجام شد !',
@@ -25,11 +27,11 @@ export const onSubmit  = async (values : any, submitProps : any , router : any)=
             }, 2000);
         }
         else{
-            localStorage.removeItem('token')
+            cookies.remove('token');
         }
     } catch (error) {
         // error handler in service.ts
-        localStorage.removeItem('token')
+        cookies.remove('token')
     }
     finally{
         setTimeout(() => {

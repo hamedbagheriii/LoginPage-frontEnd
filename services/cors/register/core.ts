@@ -1,4 +1,4 @@
-import { registerUserSerivce } from '@/services/auth/register';
+import { registerUserSerivce } from '@/services/auth/auth';
 import { AlertComponent } from '@/utils/Alert';
 import * as Yup from 'yup';
 
