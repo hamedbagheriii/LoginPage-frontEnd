@@ -6,7 +6,7 @@ export const middleware = async (req : NextRequest)=>{
     const pathName = req.nextUrl.pathname
     
 
-    if (!isLogin && pathName.startsWith('/')) {
+    if (!isLogin && pathName.startsWith('/panel')) {
         return NextResponse.redirect(new URL('/auth/login', req.url))
     }
     else if (isLogin && pathName.startsWith('/auth')) {
@@ -16,5 +16,5 @@ export const middleware = async (req : NextRequest)=>{
 }
 
 export const config = {
-    matcher: ['/:path*']
+    matcher: ['/panel/:path*', '/auth/:path*']
 }

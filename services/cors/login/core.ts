@@ -23,7 +23,7 @@ export const onSubmit  = async (values : any, submitProps : any , router : any)=
             setTimeout(() => {
                 AlertComponent('عملیات با موفقیت انجام شد !',
                 `شما با موفقیت وارد حساب کاربری خود شدید .`);
-                router.push('/')
+                router.push('/panel')
             }, 2000);
         }
         else{
