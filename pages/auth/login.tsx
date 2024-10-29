@@ -1,5 +1,5 @@
 import FormikControl from '@/components/formik/formikControl';
-import AuthHeader from '@/components/layout/authHeader';
+import AuthHeader from '@/components/layout/auth/header';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import LinkBtn from '@/components/ui/Link';
 import { initialValues, onSubmit, validationSchema } from '@/services/cors/login/core';

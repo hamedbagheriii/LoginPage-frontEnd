@@ -15,10 +15,10 @@ export const onSubmit  = async (values : any, submitProps : any , router : any)=
 
     try {
         const res = await loginUserSerivce(values);
-
+        console.log(res);
+        
         if(res.status === 200 && res.data.success){
             cookies.set('token' , res.data.token)
-            console.log(res);
 
             setTimeout(() => {
                 AlertComponent('عملیات با موفقیت انجام شد !',

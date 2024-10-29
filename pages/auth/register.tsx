@@ -4,7 +4,7 @@ import LinkBtn from '@/components/ui/Link';
 import FormikControl from '@/components/formik/formikControl';
 import { initialValues, onSubmit, validationSchema } from '@/services/cors/register/core';
 import { useRouter } from 'next/router';
-import AuthHeader from '@/components/layout/authHeader';
+import AuthHeader from '@/components/layout/auth/header';
 
 const Register = () => {
   const router = useRouter();

@@ -8,14 +8,15 @@ const errorHandler = (err : any)=>{
     `${err}`,'error')
 }
 axios.interceptors.response.use((res)=>{
-    if(!res.data.success){
+    if(res.status !== 200){
         console.log(res);
         errorHandler(res.data.message);
     }
     
     return res ;
 },(err)=>{
-    errorHandler('مشکلی سمت سرور رخ داده است .');
+    errorHandler(err.response.data.message || 
+    'مشکلی سمت سرور رخ داده است .');
     console.log(err);
 })
 

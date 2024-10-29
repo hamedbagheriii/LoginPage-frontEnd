@@ -34,3 +34,8 @@ export const getUserIsLoginSerivce = async (req: NextRequest) => {
     return false;
   }
 };
+
+// ! logout user service
+export const logoutUserService = async () => {
+  return await service('get', '/auth/logout');
+};
