@@ -1,20 +1,22 @@
 import Lauout from '@/components/layout/panel/Lauout';
 import { useIsUser } from '@/hooks/isUser';
-import Cart from '@/utils/cart';
 import PageLoading from '@/utils/pageLoading';
 import { useRouter } from 'next/router';
 import React from 'react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import CardComponent from '@/utils/card';
+import Slider, { postType } from '@/utils/slider';
 
 export default function Panel() {
   const router = useRouter();
   const { userData, isLoading } = useIsUser();
+  const posts: postType[] = userData?.posts || [];
+
+  // ! handle get likes
+  const getLikes = () => {
+    let likes = 0;
+    posts?.map((p: any) => (p.like ? (likes += p.like) : null));
+    return likes;
+  };
 
   return (
     <>
@@ -27,34 +29,28 @@ export default function Panel() {
               className='w-full h-full flex gap-4 lg:gap-0 flex-col justify-center 
             items-center sm:flex-row sm:justify-around flex-wrap lg:flex-nowrap'
             >
-              <Cart title='کل پست ها' description='20' icon='bi bi-mailbox2' />
-              <Cart
-                title='پست های دارای سرتیتر'
-                description='description'
-                icon='bi bi-file-earmark-text'
+              <CardComponent
+                title='کل پست ها'
+                description={posts?.length || 0}
+                icon='bi bi-mailbox2'
               />
-              <Cart
+              <CardComponent
+                title='کل لایک ها'
+                description={getLikes()}
+                icon='bi bi-heart-fill'
+              />
+              <CardComponent
                 title='پست های دارای محتوا'
-                description='description'
+                description={posts?.filter((p: any) => p.content).length || 0}
                 icon='bi bi-file-earmark-text'
               />
-              <Cart
+              <CardComponent
                 title='پست های کامل'
-                description='description'
-                icon='bi bi-file-earmark-text'
+                description={posts?.filter((p: any) => p.content && p.title).length || 0}
+                icon='bi bi-file-post'
               />
             </div>
-            <div className='w-10/12 mt-8 sm:mt-11 bg-slate-500 h-[200px] rounded-xl shadow-lg shadow-blue-500/50 mx-auto'>
-              <Carousel className='w-full  h-[200px] bg-slate-200 rounded-xl'>
-                <CarouselContent className='rounded-xl w-full h-[200px]'>
-                  <CarouselItem className='w-full h-[200px] bg-blue-500  rounded-xl'>
-                {/* ! اسم کارت ها اوکی شود و اینجا پیست شود */}
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
+            <Slider posts={posts} />
           </div>
         </Lauout>
       ) : (

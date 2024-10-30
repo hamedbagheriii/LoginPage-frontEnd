@@ -12,6 +12,7 @@ export const useIsUser = () => {
     email: string;
     password: null;
     id: number;
+    posts : any[] | null;
   }
   const [userData, setUserData] = useState<userDataType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -39,7 +40,7 @@ export const useIsUser = () => {
     } catch (error : any) {
       // error handler in
       dispatch(getUserError(
-        error.response.data.message ||
+        error.response?.data?.message ||
         'مشکلی سمت سرور رخ داده است .'
       ));
     }
