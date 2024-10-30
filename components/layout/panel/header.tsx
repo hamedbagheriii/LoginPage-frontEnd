@@ -23,7 +23,7 @@ const Header = () => {
     <>
       <Menubar
         dir='rtl'
-        className='w-10/12 max-w-[600px] mx-auto mt-3 py-5 rounded-3xl px-2
+        className='w-10/12 max-w-[700px] mx-auto mt-3 py-5 rounded-3xl px-2
       bg-blue-500 flex justify-between shadow-lg shadow-blue-500/50 border-0'
       >
         {/* right section */}

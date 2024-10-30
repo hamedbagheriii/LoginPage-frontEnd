@@ -22,7 +22,7 @@ const RightHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
           پنل
         </MenubarTrigger>
         <MenubarContent
-          className='text-center left-14 relative w-full 
+          className='text-center  relative w-full 
           transition-all duration-500 
          bg-white shadow-lg top-[1px] border-2 text-blue-600'
         >

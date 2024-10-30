@@ -24,7 +24,7 @@ const LeftHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
           <i className='bi bi-person-fill text-[22px]'></i>
         </MenubarTrigger>
         <MenubarContent
-          className='text-center left-14 relative w-full 
+          className='text-center absolute left-24 lg:left-40 relative w-full 
           transition-all duration-500 
           bg-white shadow-lg top-[1px] border-2 text-blue-600'
         >
