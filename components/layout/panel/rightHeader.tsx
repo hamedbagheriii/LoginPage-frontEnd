@@ -16,7 +16,7 @@ const RightHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
         <MenubarTrigger
           className='bg-white/40 rounded-full text-[15px]
         text-white transition-all duration-300
-        hover:bg-white hover:text-blue-600 px-10 '
+        hover:bg-white hover:text-blue-600 px-10 cursor-pointer'
         >
           <i className='bi bi-caret-down-fill left-[8px] top-[4px] relative '></i>
           پنل

@@ -18,7 +18,7 @@ const LeftHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
       <MenubarMenu>
 
         <MenubarTrigger
-          className='rounded-full px-3  bg-white/40 text-white
+          className='rounded-full px-3  bg-white/40 text-white cursor-pointer
          transition-all duration-300 hover:bg-white hover:text-blue-600 '
         >
           <i className='bi bi-person-fill text-[22px]'></i>

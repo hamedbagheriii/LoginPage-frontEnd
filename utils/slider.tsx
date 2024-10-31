@@ -15,6 +15,12 @@ export interface postType {
   content: string;
   like: number;
   userID?: number;
+  userData ?: {
+    fristName: string;
+    lastName: string;
+    email: string;
+  };
+
 }
 interface SliderProps {
   posts: postType[];
@@ -23,7 +29,7 @@ const Slider: FC<SliderProps> = ({ posts }) => {
   return (
     <>
       <span className='text-[20px] my-3 text-center ring-2 ring-blue-500 w-fit mx-auto px-4 py-1  
-      rounded-full font-bold  text-blue-500'>
+      rounded-full font-bold shadow-lg shadow-blue-500/50 text-blue-500'>
         پست های من 
       </span>
       <div

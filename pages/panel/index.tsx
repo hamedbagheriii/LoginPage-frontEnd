@@ -1,4 +1,3 @@
-import Lauout from '@/components/layout/panel/Lauout';
 import { useIsUser } from '@/hooks/isUser';
 import PageLoading from '@/utils/pageLoading';
 import { useRouter } from 'next/router';
@@ -7,6 +6,7 @@ import CardComponent from '@/utils/card';
 import Slider, { postType } from '@/utils/slider';
 import { getAllPostsService } from '@/services/posts/posts';
 import { Button } from '@/components/ui/button';
+import Layout from '@/components/layout/panel/Layout';
 
 export default function Panel() {
   const router = useRouter();
@@ -50,12 +50,13 @@ export default function Panel() {
     }
   }, [showHight]);
 
+
   return (
     <>
       {isLoading ? (
         <PageLoading />
       ) : userData ? (
-        <Lauout>
+        <Layout >
           <div className='flex justify-center flex-col py-10  '>
             <div
               className='w-full h-full flex gap-4 lg:gap-0 flex-col justify-center 
@@ -90,7 +91,7 @@ export default function Panel() {
                 <span
                   className='text-[20px] mt-16 mb-4 text-center 
                   ring-2 ring-blue-500 w-fit mx-auto px-4 py-1  
-                  rounded-full font-bold  text-blue-500'
+                  rounded-full font-bold shadow-lg shadow-blue-500/50  text-blue-500'
                 >
                   پست های دیگر کاربران
                 </span>
@@ -106,7 +107,8 @@ export default function Panel() {
                         <CardComponent
                           key={`${post.title}-${i}`}
                           title={post.title}
-                          description={false}
+                          description={post.userData?.fristName 
+                          + ' ' + post.userData?.lastName}
                           icon='bi bi-chat-left-dots-fill'
                           className='lg:w-96 mt-4'
                         />
@@ -114,16 +116,14 @@ export default function Panel() {
                     }
                   })}
 
-                  <div
-                    className={`w-full h-3/6 bg-gradient-to-b from-transparent
+                  <div className={`w-full h-3/6 bg-gradient-to-b from-transparent
                 to-white absolute bottom-0 left-0 ${showHight ? 'hidden' : 'block'}`}
                   ></div>
 
-                  <Button
-                    className='absolute bottom-10 px-6 py-2 text-[16px] left-2/4
+                  <Button className={`absolute bottom-10 px-6 py-2 text-[16px] left-2/4
                   shadow-lg shadow-blue-500 
-                  -translate-x-2/4'
-                    onClick={() => setShowHight((prev) => !prev)}
+                  -translate-x-2/4 ${showHight ? 'shadow-black/75' : ''}`}  
+                  onClick={() => setShowHight((prev) => !prev)}
                   >
                     {showHight ? 'بستن . . .' : 'بیشتر . . .'}
                   </Button>
@@ -131,7 +131,8 @@ export default function Panel() {
               </>
             )}
           </div>
-        </Lauout>
+
+        </Layout>
       ) : (
         router.push('/auth/login')
       )}
