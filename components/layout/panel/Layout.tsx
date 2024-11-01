@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 const Layout: FC<LayoutProps> = ({ children, bgColor }) => {
     return (
-        <div className={`w-full bg-${bgColor} h-dvh overflow-x-hidden px-2`}>
+        <div className={`w-full ${bgColor} h-dvh overflow-x-hidden px-2`}>
             <Header />
             {children}
         </div>

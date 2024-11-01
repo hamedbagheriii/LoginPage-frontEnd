@@ -7,6 +7,7 @@ import Slider, { postType } from '@/utils/slider';
 import { getAllPostsService } from '@/services/posts/posts';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/panel/Layout';
+import RingTitle from '@/utils/ringTitle';
 
 export default function Panel() {
   const router = useRouter();
@@ -56,7 +57,7 @@ export default function Panel() {
       {isLoading ? (
         <PageLoading />
       ) : userData ? (
-        <Layout >
+        <Layout bgColor='bg-gray-200'>
           <div className='flex justify-center flex-col py-10  '>
             <div
               className='w-full h-full flex gap-4 lg:gap-0 flex-col justify-center 
@@ -88,13 +89,7 @@ export default function Panel() {
 
             {showAllPosts?.length > 0 && (
               <>
-                <span
-                  className='text-[20px] mt-16 mb-4 text-center 
-                  ring-2 ring-blue-500 w-fit mx-auto px-4 py-1  
-                  rounded-full font-bold shadow-lg shadow-blue-500/50  text-blue-500'
-                >
-                  پست های دیگر کاربران
-                </span>
+                <RingTitle title='پست های دیگر کاربران' />
 
                 {/* ! show all posts */}
                 <div
@@ -117,7 +112,7 @@ export default function Panel() {
                   })}
 
                   <div className={`w-full h-3/6 bg-gradient-to-b from-transparent
-                to-white absolute bottom-0 left-0 ${showHight ? 'hidden' : 'block'}`}
+                to-gray-200 absolute bottom-0 left-0 ${showHight ? 'hidden' : 'block'}`}
                   ></div>
 
                   <Button className={`absolute bottom-10 px-6 py-2 text-[16px] left-2/4

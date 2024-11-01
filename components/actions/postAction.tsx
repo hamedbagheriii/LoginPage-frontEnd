@@ -1,19 +1,19 @@
+import LiAction from '@/utils/liAction';
 import React, { FC } from 'react';
 
 interface PostActionProps {
-    item: any;
+  item: any;
+  handleDeletePost: (id: string) => void;
 }
-const PostAction : FC<PostActionProps> = ({item}) => {
-    return (
-        <div className='flex items-center justify-center  gap-4'>
-            <span className='cursor-pointer text-red-600'>
-                <i className='bi bi-trash3'></i>
-            </span>
-            <span className='cursor-pointer text-orange-500'>
-                <i className='bi bi-pencil-square'></i>
-            </span>
-        </div>
-    );
-}
+const PostAction: FC<PostActionProps> = ({ item , handleDeletePost}) => {
+  return (
+    <div className='flex items-center justify-center  gap-4'>
+      <LiAction icon='bi bi-trash3' color='text-red-600'
+       onClick={() => handleDeletePost(item.id)} />
+      <LiAction icon='bi bi-pencil-square' color='text-orange-500'
+       onClick={() => {}} />
+    </div>
+  );
+};
 
 export default PostAction;

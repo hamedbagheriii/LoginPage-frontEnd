@@ -1,22 +1,33 @@
 import React, { FC } from 'react';
 import {
-    MenubarContent,
-    MenubarItem,
-    MenubarMenu,
-    MenubarSeparator,
-    MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
 } from '@/components/ui/menubar';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { ConfirmAlert } from '@/utils/Alert';
 
 export interface LeftHeaderProps {
   hoverStyle: string;
   userData: any;
 }
 const LeftHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
+  const router = useRouter();
+
+  //! handle logout
+  const handleLogout = async () => {
+    if (await ConfirmAlert(`آیا با خروج از حساب کاربری
+       خود مطمئن هستید؟`)) {
+      router.push('/logout');
+    }
+  };
+
   return (
     <>
       <MenubarMenu>
-
         <MenubarTrigger
           className='rounded-full px-3  bg-white/40 text-white cursor-pointer
          transition-all duration-300 hover:bg-white hover:text-blue-600 '
@@ -28,8 +39,10 @@ const LeftHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
           transition-all duration-500 
           bg-white shadow-lg top-[1px] border-2 text-blue-600'
         >
-          <div className='flex cursor-default 
-          flex-col text-[15px] py-2 items-center gap-2.5'>
+          <div
+            className='flex cursor-default 
+          flex-col text-[15px] py-2 items-center gap-2.5'
+          >
             <span>{userData?.fullName}</span>
             <span className=''>کاربر : عادی</span>
           </div>
@@ -44,12 +57,14 @@ const LeftHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
           </MenubarItem>
           <hr className='w-11/12 mx-auto' />
           <MenubarItem className='hover:bg-white/100'>
-            <Link href='/logout' className={`text-center w-full  ${hoverStyle}`}>
+            <span
+              onClick={() => handleLogout()}
+              className={`text-center w-full  ${hoverStyle}`}
+            >
               خروج
-            </Link>
+            </span>
           </MenubarItem>
         </MenubarContent>
-
       </MenubarMenu>
     </>
   );

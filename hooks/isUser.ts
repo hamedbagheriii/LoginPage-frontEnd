@@ -57,5 +57,5 @@ export const useIsUser = () => {
   }, []);
 
 
-  return { userData, isLoading };
+  return { userData, isLoading , handleGetData};
 };

@@ -20,6 +20,9 @@ import {
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import Loading from '@/utils/loading';
+import { useRouter } from 'next/router';
+
+
 
 interface IndexProps {
   data: any[];
@@ -27,6 +30,7 @@ interface IndexProps {
   numOfPage: number;
   isLoading: boolean;
   searchField: string;
+  addItem ?: string
 }
 const PaginationTable: FC<IndexProps> = ({
   data,
@@ -34,6 +38,7 @@ const PaginationTable: FC<IndexProps> = ({
   numOfPage,
   isLoading,
   searchField,
+  addItem
 }) => {
   const [initData, setInitData] = useState<any[]>(data);
   const [tableData, setTableData] = useState<any[]>([]);
@@ -42,6 +47,7 @@ const PaginationTable: FC<IndexProps> = ({
   const [pageCount, setPageCount] = useState(1);
   const ref = useRef<HTMLInputElement>(null);
   const pageRange = 2;
+  const router = useRouter();
 
   // pagination =>
   useEffect(() => {
@@ -81,7 +87,7 @@ const PaginationTable: FC<IndexProps> = ({
       ) : (
         <div>
           {/* search */}
-          <div className='flex w-10/12 mx-auto items-center'>
+          <div className='flex w-10/12 flex-col sm:flex-row justify-center sm:justify-between mx-auto items-center'>
             <div className='flex w-full max-w-sm items-center mb-4 space-x-2'>
               <Button
                 type='submit'
@@ -99,10 +105,20 @@ const PaginationTable: FC<IndexProps> = ({
                 ref={ref}
               />
             </div>
+            {addItem && (
+              <div className='flex w-full max-w-sm items-center mb-4 space-x-2'>
+                <Button onClick={() => router.push(addItem)} className='bg-blue-600 w-full sm:w-fit ms-auto text-[14px] '>
+                  افزودن
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* table */}
-          <div className='w-10/12 min-w-20 mx-auto bg-white shadow-black/20 shadow-md overflow-x-auto rounded-lg'>
+          <div
+            className='w-10/12 min-w-20 mx-auto bg-white
+           shadow-black/20 shadow-md overflow-x-auto rounded-lg'
+          >
             <Table className='w-full table-auto overflow-hidden border-none rounded-lg'>
               {/* table header */}
               <TableHeader>
@@ -110,7 +126,7 @@ const PaginationTable: FC<IndexProps> = ({
                   {dataInfo.map((item, index) => (
                     <TableHead
                       key={index}
-                      className='text-center min-w-20 border-2 border-l-0 border-t-0
+                      className='text-center min-w-32 border-2 border-l-0 border-t-0
                      border-black text-[16px] text-blue-600 first:border-r-0'
                     >
                       {item.title}
