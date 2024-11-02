@@ -10,6 +10,8 @@ const ErrorAlert : FC<ErrorAlertProps> = ({name}) => {
   return (
     <ErrorMessage name={name}>
       {(message : any) => {
+        console.log(message);
+        
         return (
           <Alert className='flex align-middle items-center py-0 px-0 pl-5 min-w-[170px] 
           border-2 w-fit' variant='destructive'>

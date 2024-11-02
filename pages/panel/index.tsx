@@ -58,7 +58,7 @@ export default function Panel() {
         <PageLoading />
       ) : userData ? (
         <Layout bgColor='bg-gray-200'>
-          <div className='flex justify-center flex-col py-10  '>
+          <div className='flex justify-center flex-col py-10 '>
             <div
               className='w-full h-full flex gap-4 lg:gap-0 flex-col justify-center 
             items-center sm:flex-row sm:justify-around flex-wrap lg:flex-nowrap mb-8'
@@ -70,7 +70,7 @@ export default function Panel() {
               />
               <CardComponent
                 title='کل لایک ها'
-                description={getLikes()}
+                description={getLikes() || '0'}
                 icon='bi bi-heart-fill'
               />
               <CardComponent
@@ -85,11 +85,13 @@ export default function Panel() {
               />
             </div>
 
-            <Slider posts={posts} />
+            {posts.length > 0 && (
+              <Slider posts={posts} />
+            )}
 
             {showAllPosts?.length > 0 && (
               <>
-                <RingTitle title='پست های دیگر کاربران' />
+                <RingTitle title='پست های دیگر کاربران'  className={`${posts.length > 0 ? '' : 'mt-0'}`}/>
 
                 {/* ! show all posts */}
                 <div

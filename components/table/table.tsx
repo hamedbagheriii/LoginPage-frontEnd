@@ -21,8 +21,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import Loading from '@/utils/loading';
 import { useRouter } from 'next/router';
-
-
+import { scrollBarStyle } from '../layout/panel/Layout';
 
 interface IndexProps {
   data: any[];
@@ -30,7 +29,7 @@ interface IndexProps {
   numOfPage: number;
   isLoading: boolean;
   searchField: string;
-  addItem ?: string
+  addItem?: string;
 }
 const PaginationTable: FC<IndexProps> = ({
   data,
@@ -38,7 +37,7 @@ const PaginationTable: FC<IndexProps> = ({
   numOfPage,
   isLoading,
   searchField,
-  addItem
+  addItem,
 }) => {
   const [initData, setInitData] = useState<any[]>(data);
   const [tableData, setTableData] = useState<any[]>([]);
@@ -87,8 +86,11 @@ const PaginationTable: FC<IndexProps> = ({
       ) : (
         <div>
           {/* search */}
-          <div className='flex w-10/12 flex-col sm:flex-row justify-center sm:justify-between mx-auto items-center'>
-            <div className='flex w-full max-w-sm items-center mb-4 space-x-2'>
+          <div
+            className='flex w-10/12 flex-col sm:flex-row 
+          justify-center sm:justify-between mx-auto items-center'
+          >
+            <div className='flex w-full max-w-sm items-center mb-4 '>
               <Button
                 type='submit'
                 className='rounded-l-none shadow-black/20 shadow-md'
@@ -107,7 +109,10 @@ const PaginationTable: FC<IndexProps> = ({
             </div>
             {addItem && (
               <div className='flex w-full max-w-sm items-center mb-4 space-x-2'>
-                <Button onClick={() => router.push(addItem)} className='bg-blue-600 w-full sm:w-fit ms-auto text-[14px] '>
+                <Button
+                  onClick={() => router.push(addItem)}
+                  className='bg-blue-600 w-full sm:w-fit ms-auto text-[14px] '
+                >
                   افزودن
                 </Button>
               </div>
@@ -116,8 +121,8 @@ const PaginationTable: FC<IndexProps> = ({
 
           {/* table */}
           <div
-            className='w-10/12 min-w-20 mx-auto bg-white
-           shadow-black/20 shadow-md overflow-x-auto rounded-lg'
+            className={`w-10/12 min-w-20 mx-auto bg-white
+           shadow-black/20 shadow-md overflow-x-auto rounded-lg ${scrollBarStyle}`}
           >
             <Table className='w-full table-auto overflow-hidden border-none rounded-lg'>
               {/* table header */}

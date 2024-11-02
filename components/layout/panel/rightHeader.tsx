@@ -8,8 +8,15 @@ import {
 } from '@/components/ui/menubar';
 import Link from 'next/link';
 import { LeftHeaderProps } from './leftHeader';
+import { useRouter } from 'next/router';
 
 const RightHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
+  const router = useRouter();
+
+  const handleActive = (path: string) => {
+    return router.pathname === path ? 'bg-blue-500/40' : '';
+  };
+
   return (
     <>
       <MenubarMenu>
@@ -27,13 +34,13 @@ const RightHeader: FC<LeftHeaderProps> = ({ hoverStyle, userData }) => {
          bg-white shadow-lg top-[1px] border-2 text-blue-600'
         >
           <MenubarItem className='hover:bg-white/100'>
-            <Link href='/panel' className={`text-center w-full ${hoverStyle}`}>
+            <Link  href='/panel' className={`text-center w-full ${hoverStyle} ${handleActive('/panel')}`}>
               داشبورد
             </Link>
           </MenubarItem>
           <hr className='w-11/12 mx-auto' />
           <MenubarItem className='hover:bg-white/100'>
-            <Link href='/panel/posts' className={`text-center w-full ${hoverStyle}`}>
+            <Link href='/panel/posts' className={`text-center w-full ${hoverStyle} ${handleActive('/panel/posts')}`}>
               پست ها
             </Link>
           </MenubarItem>
