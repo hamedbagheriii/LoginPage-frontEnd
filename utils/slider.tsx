@@ -9,18 +9,18 @@ import {
 import React, { FC } from 'react';
 import { Card, CardHeader } from '@/components/ui/card';
 import { CardTitle } from '@/components/ui/card';
+import RingTitle from './ringTitle';
 
 export interface postType {
   title: string;
   content: string;
   like: number;
   userID?: number;
-  userData ?: {
+  userData?: {
     fristName: string;
     lastName: string;
     email: string;
   };
-
 }
 interface SliderProps {
   posts: postType[];
@@ -28,13 +28,10 @@ interface SliderProps {
 const Slider: FC<SliderProps> = ({ posts }) => {
   return (
     <>
-      <span className='text-[20px] my-3 text-center ring-2 ring-blue-500 w-fit mx-auto px-4 py-1  
-      rounded-full font-bold shadow-lg shadow-blue-500/50 text-blue-500'>
-        پست های من 
-      </span>
+      <RingTitle title='پست های من' />
       <div
-        className='w-10/12 mt-5 max-w-[400px] sm:max-w-[800px] xl:max-w-[1000px] h-[220px] lg:h-[255px] 
-      shadow-2xl shadow-blue-600/75 mx-auto rounded-xl border-2  border-blue-600'
+        className='w-10/12 mt-5 max-w-[400px] sm:max-w-[800px] xl:max-w-[1000px] h-[225px] lg:h-[260px] 
+      shadow-2xl shadow-blue-600/75 mx-auto rounded-xl border-4  border-white'
       >
         <Carousel
           className='w-full  h-[215px] lg:h-[230px]  bg-transparent rounded-xl'
@@ -50,7 +47,7 @@ const Slider: FC<SliderProps> = ({ posts }) => {
           <CarouselContent
             dir='ltr'
             className='rounded-xl flex relative flex-nowrap pe-4 ps-2
-        py-2 gap-2 w-full h-[215px] lg:h-[245px] '
+        py-2 gap-2 w-full h-[215px] lg:h-[250px] '
           >
             {posts?.map((post: postType, i: number) => {
               return (
@@ -58,7 +55,7 @@ const Slider: FC<SliderProps> = ({ posts }) => {
                   <CarouselItem
                     key={`${post.title}-${i}`}
                     className='w-full h-[200px] bg-blue-500 shadow-md shadow-blue-500/80 
-                  mx-auto lg:h-[230px]  rounded-xl'
+                  mx-auto lg:h-[235px]  rounded-xl'
                   >
                     <div
                       className='space-y-3 h-full rounded-xl mx-auto 

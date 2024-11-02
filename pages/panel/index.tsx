@@ -54,10 +54,10 @@ export default function Panel() {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading  ? (
         <PageLoading />
       ) : userData ? (
-        <Layout bgColor='bg-gray-200'>
+        <Layout bgColor='bg-blue-200'>
           <div className='flex justify-center flex-col py-10 '>
             <div
               className='w-full h-full flex gap-4 lg:gap-0 flex-col justify-center 
@@ -91,7 +91,8 @@ export default function Panel() {
 
             {showAllPosts?.length > 0 && (
               <>
-                <RingTitle title='پست های دیگر کاربران'  className={`${posts.length > 0 ? '' : 'mt-0'}`}/>
+                <RingTitle title='پست های دیگر کاربران'  
+                className={`${posts.length > 0 ? '' : 'mt-0'} `}/>
 
                 {/* ! show all posts */}
                 <div
@@ -113,11 +114,12 @@ export default function Panel() {
                     }
                   })}
 
+                  {/* lyer */}
                   <div className={`w-full h-3/6 bg-gradient-to-b from-transparent
-                to-gray-200 absolute bottom-0 left-0 ${showHight ? 'hidden' : 'block'}`}
+                to-blue-200 absolute bottom-0 left-0 ${showHight ? 'hidden' : 'block'}`}
                   ></div>
 
-                  <Button className={`absolute bottom-10 px-6 py-2 text-[16px] left-2/4
+                  <Button className={`absolute bottom-10 px-6 py-2 text-[16px]  left-2/4
                   shadow-lg shadow-blue-500 
                   -translate-x-2/4 ${showHight ? 'shadow-black/75' : ''}`}  
                   onClick={() => setShowHight((prev) => !prev)}
